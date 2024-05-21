@@ -6,7 +6,7 @@ import {
   deleteItem,
 } from '../data-models/events.models';
 
-export const getEvent = (req, res) => {
+export const getEvent = async (req, res) => {
   try {
     const resp = getItem(parseInt(req.params.id));
     res.status(200).json(resp);
@@ -15,7 +15,7 @@ export const getEvent = (req, res) => {
   }
 };
 
-export const listEvents = (req, res) => {
+export const listEvents = async (req, res) => {
   try {
     const resp = listItems();
     res.status(200).json(resp);
@@ -24,7 +24,7 @@ export const listEvents = (req, res) => {
   }
 };
 
-export const editEvent = (req, res) => {
+export const editEvent = async (req, res) => {
   try {
     const resp = editItem(parseInt(req.params.id), req.body);
     res.status(200).json(resp);
@@ -33,7 +33,7 @@ export const editEvent = (req, res) => {
   }
 };
 
-export const addEvent = (req, res) => {
+export const addEvent = async (req, res) => {
   try {
     const resp = addItem(req.body);
     res.status(200).json(resp);
@@ -42,7 +42,7 @@ export const addEvent = (req, res) => {
   }
 };
 
-export const deleteEvent = (req, res) => {
+export const deleteEvent = async (req, res) => {
   try {
     const resp = deleteItem(parseInt(req.params.id));
     res.status(200).json(resp);
