@@ -4,9 +4,9 @@ import {
   editItem,
   addItem,
   deleteItem,
-} from '../data-models/events.models';
+} from '../data-models/events.models.ts';
 
-export const getEvent = async (req, res) => {
+export const getEvent = async (req: any, res: any) => {
   try {
     const resp = getItem(parseInt(req.params.id));
     res.status(200).json(resp);
@@ -15,16 +15,16 @@ export const getEvent = async (req, res) => {
   }
 };
 
-export const listEvents = async (req, res) => {
+export const listEvents = async (req: any, res: any) => {
   try {
-    const resp = listItems();
+    const resp = await listItems();
     res.status(200).json(resp);
   } catch (err) {
     res.status(500).send(err);
   }
 };
 
-export const editEvent = async (req, res) => {
+export const editEvent = async (req: any, res: any) => {
   try {
     const resp = editItem(parseInt(req.params.id), req.body);
     res.status(200).json(resp);
@@ -33,7 +33,7 @@ export const editEvent = async (req, res) => {
   }
 };
 
-export const addEvent = async (req, res) => {
+export const addEvent = async (req: any, res: any) => {
   try {
     const resp = addItem(req.body);
     res.status(200).json(resp);
@@ -42,7 +42,7 @@ export const addEvent = async (req, res) => {
   }
 };
 
-export const deleteEvent = async (req, res) => {
+export const deleteEvent = async (req: any, res: any) => {
   try {
     const resp = deleteItem(parseInt(req.params.id));
     res.status(200).json(resp);

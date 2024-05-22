@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import Event from '../models/event';
+import Event from '../models/event.ts';
+import EventDocument from '../models/event.ts';
 
 dotenv.config();
 
@@ -8,7 +9,7 @@ const db = process.env.DB as string;
 mongoose.set('strictQuery', false);
 mongoose.connect(db);
 
-export const getItem = async (id) => {
+export const getItem = async (id: any) => {
   try {
     const event = await Event.findById(id);
     return event;
@@ -17,11 +18,11 @@ export const getItem = async (id) => {
   }
 };
 
-export const listItems = () => {
+export const listItems = async () => {
   try {
-    const events = Event.find()
+    const events = await Event.find()
       .sort({ num: -1 })
-      .exec((err, events) => {
+      .exec((err: any, events: any) => {
         if (err) {
           console.log(err);
         } else {
@@ -33,7 +34,10 @@ export const listItems = () => {
   }
 };
 
-export const editItem = async (id, data) => {
+export const editItem = async (
+  id: any,
+  data: { title: any; content: any; num: any }
+) => {
   try {
     const { title, content, num } = data;
     const updatedArticle = await Event.findByIdAndUpdate(id, {
@@ -46,16 +50,16 @@ export const editItem = async (id, data) => {
   }
 };
 
-export const addItem = async (data) => {
+export const addItem = async (data: { title: any; content: any }) => {
   try {
     const { title, content } = data;
     if (!title || !content) {
       console.log('Title and contet are required fields!');
     }
 
-    Event.findOne()
+    await Event.findOne()
       .sort({ num: -1 })
-      .exec(async (err, latestEvent) => {
+      .exec(async (err: any, latestEvent: { num: any }) => {
         if (err) {
           console.log(err);
         } else {
@@ -79,7 +83,7 @@ export const addItem = async (data) => {
   }
 };
 
-export const deleteItem = async (id) => {
+export const deleteItem = async (id: any) => {
   try {
     if (!id) {
       console.log('Event ID not recieved');

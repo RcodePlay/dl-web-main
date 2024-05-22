@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import swaggerUI from 'swagger-ui-express';
 import swaggerJSdoc from 'swagger-jsdoc';
 
-import eventsRoute from './routes/events.routes';
+import eventsRoute from './routes/events.routes.ts';
 
 dotenv.config();
 
