@@ -7,79 +7,76 @@ dotenv.config();
 
 const db = process.env.DB as string;
 mongoose.set('strictQuery', false);
-mongoose.connect(db);
+
+if (!db) {
+  throw new Error('Database connection string is not defined in env variables');
+}
+
+mongoose
+  .connect(db)
+  .then(() => {
+    console.log('[server/log]: Connected to the database');
+  })
+  .catch((err) => {
+    console.error('[server/log]: Database connection error:', err);
+  });
 
 export const getItem = async (id: any) => {
   try {
     const event = await Event.findById(id);
     return event;
   } catch (err) {
-    console.log(err);
+    console.log('[server/error]:' + err);
   }
 };
 
-export const listItems = async () => {
+export const listItems = async (): Promise<any> => {
   try {
-    const events = await Event.find()
-      .sort({ num: -1 })
-      .exec((err: any, events: any) => {
-        if (err) {
-          console.log(err);
-        } else {
-          return events;
-        }
-      });
+    const events = await Event.find().sort({ createdAt: -1 }).exec();
+    return events;
   } catch (err) {
-    console.log(err);
+    console.log('[server/error]:' + err);
+    throw err;
   }
 };
 
 export const editItem = async (
   id: any,
-  data: { title: any; content: any; num: any }
+  data: { title: any; content: any; type: any }
 ) => {
   try {
-    const { title, content, num } = data;
-    const updatedArticle = await Event.findByIdAndUpdate(id, {
+    const { title, content, type } = data;
+    const updatedEvent = await Event.findByIdAndUpdate(id, {
       title,
       content,
-      num,
+      type,
     });
+    console.log('[server/log]: Updated an event.');
+    return updatedEvent;
   } catch (err) {
-    console.log(err);
+    console.log('[server/error]:' + err);
+    throw err;
   }
 };
 
-export const addItem = async (data: { title: any; content: any }) => {
+export const addItem = async (newEvent: {
+  title: string;
+  content: string;
+  type: string;
+}) => {
   try {
-    const { title, content } = data;
-    if (!title || !content) {
-      console.log('Title and contet are required fields!');
-    }
+    const event = new Event({
+      ...newEvent,
+      createdAt: new Date(),
+    });
 
-    await Event.findOne()
-      .sort({ num: -1 })
-      .exec(async (err: any, latestEvent: { num: any }) => {
-        if (err) {
-          console.log(err);
-        } else {
-          let latestNum = latestEvent.num;
-          console.log(latestEvent.num);
-          let newNum = latestNum + 1;
-          console.log(newNum);
+    await event.save();
 
-          const event = new Event({
-            title: data.title,
-            content: data.content,
-            num: newNum,
-          });
-          const newEvent = await event.save();
-          console.log(newEvent);
-          return newEvent;
-        }
-      });
+    console.log('[server/log]: Added new event');
+    return event;
   } catch (error) {
-    console.log(error);
+    console.log('[server/error]:' + error);
+    throw error;
   }
 };
 
@@ -94,9 +91,10 @@ export const deleteItem = async (id: any) => {
     if (!deletedEvent) {
       console.log('Event not deleted');
     }
-
-    return 'event removed successfully';
+    console.log('[server/log]: Deleted an event');
+    return deletedEvent;
   } catch (error) {
-    console.log(error);
+    console.log('[server/error]:' + error);
+    throw error;
   }
 };

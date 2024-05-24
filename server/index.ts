@@ -3,7 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import swaggerUI from 'swagger-ui-express';
-import swaggerJSdoc from 'swagger-jsdoc';
+import swaggerJSDoc from 'swagger-jsdoc';
 
 import eventsRoute from './routes/events.routes.ts';
 
@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 const PORT = 3000;
 
-const swaggerSpec = {
+const swaggerOptions = {
   definition: {
     openapi: '3.0.0',
     info: {
@@ -22,20 +22,19 @@ const swaggerSpec = {
     servers: [
       {
         url: `http://localhost:${PORT}`,
+        description: 'Dev server',
       },
     ],
   },
-  apis: ['./routes/events.ts'],
+  apis: ['./server/routes/*.ts'],
 };
 
+const swaggerSpec = swaggerJSDoc(swaggerOptions);
+
 // Global middlewares
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 app.use(cors());
 app.use(express.json());
-app.use(
-  '/api-docs',
-  swaggerUI.serve,
-  swaggerUI.setup(swaggerJSdoc(swaggerSpec))
-);
 
 // defining api routes
 app.use('/events', eventsRoute);

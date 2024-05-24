@@ -8,7 +8,7 @@ import {
 
 export const getEvent = async (req: any, res: any) => {
   try {
-    const resp = getItem(parseInt(req.params.id));
+    const resp = getItem(req.params.id);
     res.status(200).json(resp);
   } catch (err) {
     res.status(500).send(err);
@@ -26,7 +26,7 @@ export const listEvents = async (req: any, res: any) => {
 
 export const editEvent = async (req: any, res: any) => {
   try {
-    const resp = editItem(parseInt(req.params.id), req.body);
+    const resp = editItem(req.params.id, req.body);
     res.status(200).json(resp);
   } catch (err) {
     res.status(500).send(err);
@@ -44,7 +44,7 @@ export const addEvent = async (req: any, res: any) => {
 
 export const deleteEvent = async (req: any, res: any) => {
   try {
-    const resp = deleteItem(parseInt(req.params.id));
+    const resp = deleteItem(req.params.id);
     res.status(200).json(resp);
   } catch (err) {
     res.status(500).send(err);

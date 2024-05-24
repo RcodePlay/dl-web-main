@@ -3,16 +3,17 @@ import mongoose, { Document } from 'mongoose';
 interface EventDocument extends Document {
   title: string;
   content: string;
-  num: number;
-  dataString: string;
+  createdAt: Date;
+  type: string;
 }
 
 //defining scheme for events
 const eventSchema = new mongoose.Schema<EventDocument>({
   title: String,
   content: String,
-  num: Number,
-  dataString: String,
+  createdAt: { type: Date, default: Date.now },
+  type: String,
 });
 
-export default mongoose.model('event', eventSchema, 'articles');
+const Event = mongoose.model('Event', eventSchema, 'events');
+export default Event;

@@ -1,0 +1,5 @@
+{
+    "watch": ["server"],
+    "ext": "ts",
+    "exec": "node --no-warnings --loader ts-node/esm -r tsconfig-paths/register server/index.ts"
+}
