@@ -41,7 +41,7 @@ app.use('/events', eventsRoute);
 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () =>
-    console.log('⚡[server]: Server is running at http://localhost:' + PORT)
+    console.log('[server/log]: Server is running at http://localhost:' + PORT)
   );
 }
 

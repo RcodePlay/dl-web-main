@@ -93,7 +93,6 @@ router.get('/:id', getEvent);
  *            $ref: '#/components/schemas/Event'
  *          example:
  *            title: Summer camp 2025
- *            createdDate: 2025-07-06
  *            content: Summer camp of 2025
  *            type: camp
  *    responses:

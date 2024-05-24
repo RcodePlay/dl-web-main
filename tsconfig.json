@@ -11,7 +11,7 @@
         "forceConsistentCasingInFileNames": true,
         "allowImportingTsExtensions": true,
         "noEmit": true,
-        "types": ["node", "mongoose", "typescript"]
+        "types": ["node", "mongoose", "typescript", "jest"]
     },
     "exclude": [
         "node_modules",

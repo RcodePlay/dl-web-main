@@ -51,7 +51,7 @@ export const editItem = async (
       content,
       type,
     });
-    console.log('[server/log]: Updated an event.');
+    await console.log('[server/log]: Updated an event.');
     return updatedEvent;
   } catch (err) {
     console.log('[server/error]:' + err);
@@ -72,7 +72,7 @@ export const addItem = async (newEvent: {
 
     await event.save();
 
-    console.log('[server/log]: Added new event');
+    await console.log('[server/log]: Added new event');
     return event;
   } catch (error) {
     console.log('[server/error]:' + error);
@@ -91,7 +91,7 @@ export const deleteItem = async (id: any) => {
     if (!deletedEvent) {
       console.log('Event not deleted');
     }
-    console.log('[server/log]: Deleted an event');
+    await console.log('[server/log]: Deleted an event');
     return deletedEvent;
   } catch (error) {
     console.log('[server/error]:' + error);
