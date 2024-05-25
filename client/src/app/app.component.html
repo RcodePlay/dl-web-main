@@ -1,0 +1,25 @@
+<header>
+  <a href="https://skauting.sk/">
+    <img width="70" alt="Dzive Labute domovenka" src="./domovenka.png" />
+  </a>
+
+  <div class="spacer"></div>
+
+  <ul>
+    <li><a [routerLink]="['/home']">Domov</a></li>
+    <li><a [routerLink]="['/events']">Udalosti</a></li>
+    <li><a [routerLink]="['/contact']">Kontakt</a></li>
+  </ul>
+
+  <div class="spacer"></div>
+
+  <img width="40" src="./user-icon.png" alt="User icon" />
+</header>
+
+<main>
+  <router-outlet />
+</main>
+
+<footer>
+  <strong>Powered by Angular</strong>
+</footer>
