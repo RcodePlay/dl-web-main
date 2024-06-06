@@ -13,7 +13,9 @@ if (!db) {
 }
 
 mongoose
-  .connect(db)
+  .connect(db, {
+    serverSelectionTimeoutMS: 5000,
+  })
   .then(() => {
     console.log('[server/log]: Connected to the database');
   })

@@ -7,11 +7,11 @@ import { LoginComponent } from './login/login.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 
 export const routes: Routes = [
-  { path: 'home', title: '4. zbor - Domov', component: HomeComponent },
-  { path: 'events', title: '4. zbor - Udalosti', component: EventsComponent },
-  { path: 'admin', title: 'Admin', component: AdminComponent },
-  { path: 'contact', title: '4. zbor - Kontakt', component: ContactComponent },
-  { path: 'login', title: 'Login', component: LoginComponent },
-  { path: '**', title: '404 Not found', component: NotfoundComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', title: '4. Zbor - Domov', component: HomeComponent },
+  { path: 'events', title: '4. Zbor - Udalosti', component: EventsComponent },
+  { path: 'admin', title: '4. Zbor - Admin', component: AdminComponent },
+  { path: 'contact', title: '4. Zbor - Kontakt', component: ContactComponent },
+  { path: 'login', title: 'Login', component: LoginComponent },
+  { path: '**', title: '404 Nič sa nenašlo', component: NotfoundComponent },
 ];
