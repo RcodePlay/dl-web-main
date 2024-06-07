@@ -1,6 +1,9 @@
 <div class="body">
   <h1 id="title">Udalosti</h1>
-  <div *ngFor="let event of events" class="event">
+  <div
+    *ngFor="let event of events | filterByType : typesToExclude"
+    class="event"
+  >
     <h2>{{ event.title }}</h2>
     <h3>{{ event.content }}</h3>
     <p>Udalosť vytvorená: {{ event.createdAt | date : 'dd/MM/yy HH:mm' }}</p>
