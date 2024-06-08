@@ -9,7 +9,7 @@ export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', title: '4. Zbor - Domov', component: HomeComponent },
   { path: 'events', title: '4. Zbor - Udalosti', component: EventsComponent },
-  { path: 'admin', title: '4. Zbor - Admin', component: AdminComponent },
+  { path: 'SetAPassword', title: '4. Zbor - Admin', component: AdminComponent },
   { path: 'contact', title: '4. Zbor - Kontakt', component: ContactComponent },
   { path: '**', title: '404 Nič sa nenašlo', component: NotfoundComponent },
 ];

@@ -1,0 +1,21 @@
+.body {
+  display: flex;
+  flex-direction: column;
+}
+
+.newEvent {
+  display: flex;
+  flex-direction: column;
+  background-color: aquamarine;
+  padding: 20px;
+  border: 4px solid #176666;
+  border-radius: 25px;
+}
+
+#event-title {
+  margin-bottom: 10px;
+}
+
+#event-content {
+  margin-bottom: 10px;
+}

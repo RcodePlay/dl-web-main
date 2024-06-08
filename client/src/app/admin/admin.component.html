@@ -1,1 +1,23 @@
-<p>admin works!</p>
+<div class="body">
+  <h1>Vitaj, Admin</h1>
+
+  <div class="newEvent">
+    <h4>Pridaj udalosť:</h4>
+    <label id="event-title">
+      Názov: <br />
+      <input type="text" [(ngModel)]="newEvent.title" />
+    </label>
+
+    <label id="event-content">
+      Udalosť: <br />
+      <textarea [(ngModel)]="newEvent.content"> </textarea>
+    </label>
+    <label id="event-type">
+      Typ: <br />
+      <input type="text" [(ngModel)]="newEvent.type" />
+    </label>
+    <br />
+
+    <button class="b35" (click)="addEvent()">Vytvoriť udalosť</button>
+  </div>
+</div>
